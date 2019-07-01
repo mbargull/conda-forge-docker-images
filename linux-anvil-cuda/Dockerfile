@@ -63,6 +63,7 @@ RUN source /opt/conda/etc/profile.d/conda.sh && \
         defaults::libstdcxx-ng && \
     conda remove --yes --quiet -n test --all && \
     conda clean -tiy && \
+    # Change group and mode for newly added files that are not already in group "lucky".
     find /opt/conda ! -group lucky -exec chgrp -h lucky {} + -exec chmod u=g {} +
 
 # Download and cache CUDA related packages.
@@ -73,6 +74,7 @@ RUN source /opt/conda/etc/profile.d/conda.sh && \
         defaults::cudnn && \
     conda remove --yes --quiet -n test --all && \
     conda clean -tiy && \
+    # Change group and mode for newly added files that are not already in group "lucky".
     find /opt/conda ! -group lucky -exec chgrp -h lucky {} + -exec chmod u=g {} +
 
 # Add a file for users to source to activate the `conda`
