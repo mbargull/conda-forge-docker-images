@@ -72,9 +72,8 @@ RUN source /opt/conda/etc/profile.d/conda.sh && \
         defaults::cudatoolkit=${CUDA_VER} \
         defaults::cudnn && \
     conda remove --yes --quiet -n test --all && \
-    conda clean -tsy && \
-    chgrp -R lucky /opt/conda && \
-    chmod -R g=u /opt/conda
+    conda clean -tiy && \
+    find /opt/conda ! -group lucky -exec chgrp -h lucky {} + -exec chmod u=g {} +
 
 # Add a file for users to source to activate the `conda`
 # environment `base`. Also add a file that wraps that for
