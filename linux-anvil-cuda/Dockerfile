@@ -62,7 +62,7 @@ RUN source /opt/conda/etc/profile.d/conda.sh && \
         defaults::libgfortran-ng \
         defaults::libstdcxx-ng && \
     conda remove --yes --quiet -n test --all && \
-    conda clean -tsy && \
+    conda clean -tiy && \
     find /opt/conda ! -group lucky -exec chgrp -h lucky {} + -exec chmod u=g {} +
 
 # Download and cache CUDA related packages.

@@ -54,7 +54,7 @@ RUN source /opt/conda/etc/profile.d/conda.sh && \
         $_channel::libgfortran-ng \
         $_channel::libstdcxx-ng && \
     conda remove --yes --quiet -n test --all && \
-    conda clean -tsy && \
+    conda clean -tiy && \
     find /opt/conda ! -group lucky -exec chgrp -h lucky {} + -exec chmod u=g {} +
 
 # Add a file for users to source to activate the `conda`
