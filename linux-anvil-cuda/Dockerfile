@@ -35,6 +35,7 @@ RUN rpm -e --nodeps --verbose gcc gcc-c++
 RUN yum update -y && \
     yum install -y \
         bzip2 \
+        findutils \
         sudo \
         tar \
         which && \
@@ -62,8 +63,7 @@ RUN source /opt/conda/etc/profile.d/conda.sh && \
         defaults::libstdcxx-ng && \
     conda remove --yes --quiet -n test --all && \
     conda clean -tsy && \
-    chgrp -R lucky /opt/conda && \
-    chmod -R g=u /opt/conda
+    find /opt/conda ! -group lucky -exec chgrp -h lucky {} + -exec chmod u=g {} +
 
 # Download and cache CUDA related packages.
 RUN source /opt/conda/etc/profile.d/conda.sh && \
