@@ -27,6 +27,7 @@ RUN yum update -y && \
     /opt/docker/bin/yum_clean_all
 
 # Run common commands
+COPY scripts/chgrp_new_files /opt/docker/bin/
 COPY scripts/run_commands /opt/docker/bin/run_commands
 RUN /opt/docker/bin/run_commands
 

@@ -22,6 +22,7 @@ RUN yum update -y && \
     /opt/docker/bin/yum_clean_all
 
 # Run common commands
+COPY scripts/chgrp_new_files /opt/docker/bin/
 COPY scripts/run_commands /opt/docker/bin/run_commands
 RUN /opt/docker/bin/run_commands
 
@@ -43,8 +44,7 @@ RUN source /opt/conda/etc/profile.d/conda.sh && \
         defaults::libstdcxx-ng && \
     conda remove --yes --quiet -n test --all && \
     conda clean -tiy && \
-    chgrp -R lucky /opt/conda && \
-    chmod -R g=u /opt/conda
+    /opt/docker/bin/chgrp_new_files lucky /opt/conda
 
 # Add a file for users to source to activate the `conda`
 # environment `base`. Also add a file that wraps that for

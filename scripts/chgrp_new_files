@@ -1,0 +1,11 @@
+#! /bin/sh
+set -eu
+
+group="${1}"
+path="${2}"
+
+# Find files that are not already in the given group and change their group and mode.
+find "${path}" \
+  ! -group "${group}" \
+    -exec chgrp -h "${group}" {} + \
+    -exec chmod g=u {} +
