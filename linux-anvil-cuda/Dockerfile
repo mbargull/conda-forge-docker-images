@@ -15,7 +15,7 @@ ENV LANG en_US.UTF-8
 ENV CUDA_HOME /usr/local/cuda
 
 # Add a timestamp for the build. Also, bust the cache.
-ADD http://worldclockapi.com/api/json/utc/now /opt/docker/etc/timestamp
+ADD http://worldtimeapi.org/api/timezone/UTC /opt/docker/etc/timestamp
 
 # Resolves a nasty NOKEY warning that appears when using yum.
 RUN rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
